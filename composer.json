@@ -1,0 +1,13 @@
+{
+    "name": "angel/buddy-semver-test",
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.5"
+    },
+    "authors": [
+        {
+            "name": "Angel Psiakis",
+            "email": "angel@mml.rocks"
+        }
+    ],
+    "require": {}
+}
