@@ -1,0 +1,37 @@
+- pipeline: "Merge into develop"
+  trigger_mode: "ON_EVERY_PUSH"
+  ref_name: "master"
+  ref_type: "BRANCH"
+  fail_on_prepare_env_warning: true
+  trigger_condition: "ALWAYS"
+  actions:
+  - action: "Execute: vendor/bin/phpcbf"
+    type: "BUILD"
+    working_directory: "/buddy/buddy-semver-test"
+    docker_image_name: "wodby/php"
+    docker_image_tag: "7.3"
+    execute_commands:
+    - "composer validate"
+    - "composer install"
+    - "vendor/bin/phpcbf"
+    volume_mappings:
+    - "/:/buddy/buddy-semver-test"
+    trigger_condition: "ALWAYS"
+    shell: "BASH"
+  - action: "Execute: git push"
+    type: "BUILD"
+    working_directory: "/buddy/buddy-semver-test"
+    docker_image_name: "library/ubuntu"
+    docker_image_tag: "18.04"
+    execute_commands:
+    - "git add ."
+    - "git commit -m 'phpcs fixes'"
+    - "git push"
+    - "git checkout develop"
+    - "git merge --no-ff master"
+    - "git push"
+    volume_mappings:
+    - "/:/buddy/buddy-semver-test"
+    trigger_condition: "ALWAYS"
+    shell: "BASH"
+
