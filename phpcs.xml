@@ -18,11 +18,6 @@
     on the command line will ignore all file tags.
     -->
     <file>app</file>
-    <file>brands</file>
-    <file>config</file>
-    <file>resources</file>
-    <file>routes</file>
-    <file>tests</file>
 
     <!--
        You can hard-code ignore patterns directly into your
