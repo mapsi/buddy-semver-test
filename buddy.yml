@@ -13,7 +13,7 @@
     execute_commands:
     - "composer validate"
     - "composer install"
-    - "vendor/bin/phpcbf"
+    - "./vendor/bin/phpcbf"
     volume_mappings:
     - "/:/buddy/buddy-semver-test"
     trigger_condition: "ALWAYS"
