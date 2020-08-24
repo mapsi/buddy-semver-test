@@ -20,7 +20,8 @@ use Illuminate\Support\Str;
 
 class ArticlesController extends Controller
 {
-    public function index()    {
+    public function index()
+    {
         $data = $this->cacheResponseData(function () {
             $service = $this->service;
 
