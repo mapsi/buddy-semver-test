@@ -1,0 +1,74 @@
+<?php
+
+namespace App\Http\Controllers\Auth;
+
+use App\Http\Controllers\Controller;
+use App\Models\Brand;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+
+class ResetPasswordController extends Controller
+{
+    /*
+    |--------------------------------------------------------------------------
+    | Password Reset Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller is responsible for handling password reset requests
+    | and uses a simple trait to include this behavior. You're free to
+    | explore this trait and override any methods you wish to tweak.
+    |
+    */
+    use ResetsPasswords;
+
+    /**
+     * Where to redirect users after resetting their password.
+     *
+     * @var string
+     */
+    protected $redirectTo = RouteServiceProvider::HOME;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+
+    /**
+     * Set the user's password.
+     * Overwrites setUserPassword() in ResetsPasswords trait
+     *
+     * @param  \Illuminate\Contracts\Auth\CanResetPassword  $user
+     * @param  string  $password
+     * @return void
+     */
+    protected function setUserPassword($user, $password)
+    {
+        $hashedPassword = Hash::make($password);
+        $brand = resolve(Brand::class);
+
+        $query = DB::table('brand_user')
+        ->where('brand_id', $brand->id)
+        ->where('user_id', $user->id);
+
+        if ($query->get()->count() == 1) {
+            $query->update([
+                'password' => $hashedPassword,
+                'updated_at' => \Carbon\Carbon::now(),
+            ]);
+        } else {
+            // reset functionality is used to register existing users with new brands
+            $user->brands()->attach($brand->id, [
+                'password' => $hashedPassword,
+                'created_at' =>  \Carbon\Carbon::now(),
+                'updated_at' => \Carbon\Carbon::now(),
+            ]);
+        }
+    }
+}
