@@ -12,5 +12,6 @@ fi
 
 
 if [[ -n $VAR ]]; then
+  echo "New tag: $TAG"
   git tag $TAG
 fi
