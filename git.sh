@@ -10,4 +10,4 @@ else
 TAG=""
 fi
 
-EXPORT TAG
+git tag $TAG
