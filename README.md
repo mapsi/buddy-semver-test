@@ -1,2 +1,2 @@
 # buddy-semver-test
-ssaass
+ssaassss
