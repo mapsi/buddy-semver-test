@@ -1,2 +1,2 @@
 # buddy-semver-testaa
-ssaassss
+ssaasssssss
