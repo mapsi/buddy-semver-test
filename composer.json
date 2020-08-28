@@ -1,0 +1,15 @@
+{
+    "name": "angel/buddy-semver-test",
+    "description": "The Laravel Framework.",
+    "license": "proprietary",
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.5"
+    },
+    "authors": [
+        {
+            "name": "Angel Psiakis",
+            "email": "angel@mml.rocks"
+        }
+    ],
+    "require": {}
+}
