@@ -1,5 +1,5 @@
 #! /bin/bash
-
+function semver(){
 RE='[^0-9]*\([0-9]*\)[.]\([0-9]*\)[.]\([0-9]*\)\([0-9A-Za-z-]*\)'
 
 step="$1"
@@ -35,3 +35,20 @@ case "$step" in
 esac
 
 echo "$MAJOR.$MINOR.$PATCH"
+}
+
+
+STRING=$(git reflog -1 | sed 's/^.*: //')
+
+if echo $STRING | grep -q "Merged in hotfix/"; then
+  TAG="$(semver patch)"
+elif echo $STRING | grep -q "Merged in release/"; then
+  TAG="$(semver minor)"
+else
+  TAG=""
+fi
+
+if [[ -n $TAG ]]; then
+  echo "New tag: $TAG"
+  git tag $TAG
+fi
