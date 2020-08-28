@@ -12,7 +12,6 @@ use App\Services\ContentApi\TagGroups\ArticleCategory;
 use App\Services\ContentApi\TagGroups\ArticleType;
 use App\Services\ContentApi\TagGroups\MagazineSection;
 use App\Services\ContentApi\TagGroups\Topic;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Arr;
