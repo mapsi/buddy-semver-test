@@ -11,9 +11,7 @@ else
 fi
 
 
-if [[ -n $VAR ]]; then
+if [[ -n $TAG ]]; then
   echo "New tag: $TAG"
   git tag $TAG
 fi
-
-export $TAG
