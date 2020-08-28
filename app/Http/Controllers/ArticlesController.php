@@ -13,8 +13,6 @@ use App\Services\ContentApi\TagGroups\ArticleType;
 use App\Services\ContentApi\TagGroups\MagazineSection;
 use App\Services\ContentApi\TagGroups\Topic;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class ArticlesController extends Controller
