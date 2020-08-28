@@ -22,7 +22,8 @@ class ArticlesController extends Controller
     public function index()
     {
         $data = $this->cacheResponseData(function () {
-            $service = $this->service;
+            $service =
+            $this->service;
 
             $siteLeadQuery = $service->newSearch()
                 ->setTagIds([Article::ENTITY_TYPE_TAG_ID, ArticleCategory::TAG_ID_SITE_LEAD, ArticleCategory::TAG_ID_FRONT_PAGE_PROMOTED])
